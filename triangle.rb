@@ -16,6 +16,15 @@ require 'set'
 #
 def triangle(a, b, c)
   set = Set[a, b, c]
+  arr = [a, b, c]
+  for i in set do
+    # Sides should be greater than 0
+    raise TriangleError unless i > 0
+  end
+  (-2...arr.size - 2).each do |n|
+    raise TriangleError unless (arr[n] + arr[n+1]) > arr[n+2]
+  end
+
   triangle_type = :equilateral
   if set.size == 2
     triangle_type = :isosceles
