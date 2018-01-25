@@ -33,13 +33,10 @@ def remove_three(num, arr)
   count = 0
   # use this to filter out used dice
   arr_to_return = arr.select do |die|
-    puts [count, die, arr.join(",")].join(", ")
-    puts die != num || count > 3
     count += 1 if die == num
     die != num || count > 3
   end
 
-  puts arr_to_return.join(", ")
   return arr_to_return
 end
 
@@ -57,7 +54,7 @@ def score(dice)
       break
     end
   end
-  # puts dice.join(",")
+  
   dice.each do |die|
     if die == 1
       total += 100
