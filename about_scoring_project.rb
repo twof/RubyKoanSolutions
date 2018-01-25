@@ -29,8 +29,39 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 #
 # Your goal is to write the score method.
 
+def remove_three(num, arr)
+  count = 0
+  # use this to filter out used dice
+  return dice.select do |die|
+    count += 1
+    return die != num and count <= 3
+  end
+end
+
 def score(dice)
-  # You need to write this method
+  total = 0
+  (1..6).each do |num|
+    count = dice.count(num)
+    if count >= 3
+      if num == 1
+        total += 1000
+      else
+        total += num * 100
+      end
+      dice = remove_three(dice)
+      break
+    end
+  end
+
+  dice.each do |die|
+    if die == 1
+      total += 100
+    elsif die == 5
+      total += 50
+    end
+  end
+    
+  return total
 end
 
 class AboutScoringProject < Neo::Koan
