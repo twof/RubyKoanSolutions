@@ -32,10 +32,15 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 def remove_three(num, arr)
   count = 0
   # use this to filter out used dice
-  return dice.select do |die|
-    count += 1
-    return die != num and count <= 3
+  arr_to_return = arr.select do |die|
+    puts [count, die, arr.join(",")].join(", ")
+    puts die != num || count > 3
+    count += 1 if die == num
+    die != num || count > 3
   end
+
+  puts arr_to_return.join(", ")
+  return arr_to_return
 end
 
 def score(dice)
@@ -48,11 +53,11 @@ def score(dice)
       else
         total += num * 100
       end
-      dice = remove_three(dice)
+      dice = remove_three(num, dice)
       break
     end
   end
-
+  # puts dice.join(",")
   dice.each do |die|
     if die == 1
       total += 100
@@ -99,6 +104,7 @@ class AboutScoringProject < Neo::Koan
 
   def test_score_of_mixed_is_sum
     assert_equal 250, score([2,5,2,2,3])
+    puts "Pay Attention"
     assert_equal 550, score([5,5,5,5])
     assert_equal 1100, score([1,1,1,1])
     assert_equal 1200, score([1,1,1,1,1])
