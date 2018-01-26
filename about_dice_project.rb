@@ -9,9 +9,7 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 class DiceSet
   attr_accessor :values
   def roll(times_to_roll)
-    puts times_to_roll
     @values = Array.new(times_to_roll) { rand(1..6) }
-    puts @values.to_s
   end
 end
 
