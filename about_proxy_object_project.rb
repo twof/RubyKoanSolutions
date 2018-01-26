@@ -18,7 +18,8 @@ class Proxy
     # ADD MORE CODE HERE
   end
 
-  # WRITE CODE HERE
+  class Proxy < @object.class
+  end
 end
 
 # The proxy object should pass the following Koan:
